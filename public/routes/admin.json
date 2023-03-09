@@ -8,7 +8,7 @@
             {
                 "path": "/dashboard",
                 "element": "Dashboard",
-                "exact": true,
+                "exact": true, 
                 "label": "Dashboard"
             },
             {
@@ -19,7 +19,7 @@
                     {
                         "path": "/user",
                         "element": "User",
-                        "exact": true,
+                        "exact": true, 
                         "label": "User Child 1"
                     },
                     {
