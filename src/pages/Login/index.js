@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setAuthToken } from "../../app/features/auth/authSlice";
-
+import { PrimaryButton } from "../../components";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -10,9 +10,7 @@ export default function Login() {
     dispatch(setAuthToken(token));
     localStorage.setItem("user", token);
   };
-  return (
-    <button onClick={doLogin}>
-      Sign In
-    </button>
+  return ( 
+    <PrimaryButton onClick={doLogin} title="Sign In" varient="primary" />  
   );
 }

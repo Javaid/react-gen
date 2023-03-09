@@ -4,7 +4,7 @@ import { useRoutes } from '../hooks';
 import { routes as ROUTES } from '../data/constant';
 import { REDIRECT_TO_DASHBOARD, REDIRECT_TO_LOGIN } from './common';
 import { useSelector } from 'react-redux';
-
+import "./index.scss"
 
 
 function Routes() {
