@@ -1,5 +1,5 @@
-const loginImage = require("../assets/images/login-banner.jpg").default
+const loginImage = require("../assets/images/loginBanner.jpg")
 const images = {
-    loginImage,
+    loginImage
 }
 export default images

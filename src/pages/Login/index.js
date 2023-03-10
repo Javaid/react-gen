@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setAuthToken } from "../../app/features/auth/authSlice";
 import { PrimaryButton } from "../../components";
-import { Container, Form, Row, Col } from "react-bootstrap";
-import {images} from "../../data/images";
+import { Container, Form, Row, Col } from "react-bootstrap"; 
+import { images } from "../../data"
 import "./Login.scss"
 
 export default function Login() {
