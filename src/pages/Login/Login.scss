@@ -1,0 +1,34 @@
+.half {
+    height: 100vh;
+    min-height: 700px;
+}
+.half {
+    .container {
+        > .row {
+            @extend .half;
+        }
+    }
+}
+.half {
+    .bg {
+        background-size: cover;
+        background-position: center;
+        width: 50%;
+    }
+    .contents {
+        width: 50%;
+        background: #f6f7fc;
+        .form-control {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+            border: none;
+            height: 54px;
+            border-radius: 4px;
+        }
+        .btn {
+            height: 56px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-radius: 4px;
+        }
+    }
+}
