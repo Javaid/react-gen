@@ -109,8 +109,8 @@ const DynamicForm = () => {
                             onChange={handleOptionChange}
                         >
                             <option value="">-- Select an option --</option>
-                            {Array.isArray(options) && options.length > 0 && options.map((option) => (
-                                <option key={option.value} value={option.value}>
+                            {Array.isArray(options) && options.length > 0 && options.map((option,index) => (
+                                <option key={index} value={option.value}>
                                     {option.label}
                                 </option>
                             ))}
