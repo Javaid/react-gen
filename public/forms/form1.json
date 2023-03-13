@@ -1,0 +1,80 @@
+{
+    "fields": [
+        {
+            "name": "provider_name",
+            "label": "Provide name",
+            "value": "",
+            "type": "text",
+            "placeholder": "Enter Provider Name"
+        },
+        {
+            "name": "search_type",
+            "type": "select",
+            "label": "Search Type",
+            "value": "by_algo",
+            "options": [
+                {
+                    "label": "By Algorithm",
+                    "value": "by_algo"
+                },
+                {
+                    "label": "By Process Date",
+                    "value": "by_process_date"
+                },
+                {
+                    "label": "By Date of Service",
+                    "value": "by_dos"
+                }
+            ]
+        },
+        {
+            "type": "dynamic",
+            "dynamicData": [
+                {
+                    "name": "by_algo",
+                    "fields": [
+                        {
+                            "name": "by_algo",
+                            "label": "Algo",
+                            "type": "select",
+                            "value": "",
+                            "optionUrl":"https://jsonplaceholder.typicode.com/todos",
+                            "placeholder": "Select Algorithm",
+                            "options": []
+                        }
+                    ]
+                },
+                {
+                    "name": "by_process_date",
+                    "fields": [
+                        {
+                            "name": "min",
+                            "label": "min",
+                            "type": "date",
+                            "value": "",
+                            "placeholder": "Min Proc Date"
+                        },
+                        {
+                            "name": "max",
+                            "label": "max",
+                            "type": "date",
+                            "value": "",
+                            "placeholder": "Max Proc Date"
+                        }
+                    ]
+                },
+                {
+                    "name": "by_dos",
+                    "fields": [
+                        {
+                            "name": "by_dos",
+                            "label": "DOS",
+                            "type": "date",
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
