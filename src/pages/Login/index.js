@@ -20,8 +20,9 @@ export default function Login() {
         <Container>
           <Row className="align-items-center justify-content-center">
             <Col md="7">
+              {/* <img className="login-logo" src={images.SiteLogo} alt="Navigating Payment Integrity" /> */}
               <h3>Payment Integrity Solution</h3>
-              <p className="text-muted py-2">Leaders in Healthcare Payment Integrity, Detection & Provider Communication</p>
+              <p className="text-muted py-1">Leaders in Healthcare Payment Integrity, Detection & Provider Communication</p>
               <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>

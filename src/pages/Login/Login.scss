@@ -18,6 +18,10 @@
     .contents {
         width: 50%;
         background: #f6f7fc;
+        .login-logo {
+            width: 220px;
+            padding-bottom: 1.5rem;
+        }
         .form-control {
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
             border: none;
