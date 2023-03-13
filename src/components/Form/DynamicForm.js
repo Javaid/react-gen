@@ -53,12 +53,12 @@ const DynamicForm = () => {
             selectField = selectField.flat();
             const promises = selectField.map(async field => {
                 return {
-                    name:field.name,
+                    name: field.name,
                     data: await fetchOption(field)
                 }
             });
-            Promise.all(promises).then(options => { 
-              setDynamicOptions(options)
+            Promise.all(promises).then(options => {
+                setDynamicOptions(options)
             });
         }
     }, [formData, findSelect])
@@ -97,7 +97,7 @@ const DynamicForm = () => {
                     </div>
                 );
             case "select":
-                const options = field.optionUrl !=="" ? dynamicOptions && dynamicOptions.find(option=>option.name === field.name)?.data : field.options;
+                const options = field.options.length===0 && field.optionUrl !== "" ? dynamicOptions && dynamicOptions.find(option => option.name === field.name)?.data : field.options;
                 console.log(options)
                 return (
                     <div className="form-group">
@@ -109,7 +109,7 @@ const DynamicForm = () => {
                             onChange={handleOptionChange}
                         >
                             <option value="">-- Select an option --</option>
-                            {field.options.map((option) => (
+                            {Array.isArray(options) && options.length > 0 && options.map((option) => (
                                 <option key={option.value} value={option.value}>
                                     {option.label}
                                 </option>
