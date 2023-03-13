@@ -4,7 +4,7 @@ const DynamicForm = () => {
     const [formData, setFormData] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
     const [dynamicOptions, setDynamicOptions] = useState(null)
-    const SELECT_FIELDS = useMemo(()=>["dynamic", "select"],[]);
+    const SELECT_FIELDS = useMemo(() => ["dynamic", "select"], []);
 
     useEffect(() => {
         // Fetch the JSON object from the server, replace the URL with your own endpoint
@@ -15,43 +15,55 @@ const DynamicForm = () => {
 
 
     const findSelect = useCallback((fields) => {
-        console.log(fields)
-        if(!fields) return []
+        if (!fields) return []
         return fields.filter(field => SELECT_FIELDS.includes(field.type));
-    },[SELECT_FIELDS])
+    }, [SELECT_FIELDS])
 
 
 
-    const fetchOption = useCallback((field) => {
+    const fetchOption = async (field) => {
         if (field.optionUrl !== "") {
-            console.log(field.optionUrl)
-            fetch(`${field.optionUrl}`)
-                .then((response) => response.json())
-                .then((data) => setDynamicOptions({ ...dynamicOptions, ...{ [field.name]: data } }));
+            const apiData = await fetch(field.optionUrl);
+            const jsonData = await apiData.json();
+            return jsonData;
+            // fetch(`${field.optionUrl}`)
+            //     .then((response) => response.json())
+            //     .then((data) => setDynamicOptions({ ...dynamicOptions, ...{ [field.name]: data } }));
         }
-    },[])
+    }
 
 
     useEffect(() => {
         // fetch select options from db
         //find select in form data
-        if (formData!==null) {
-            const fields = findSelect(formData.fields); 
-            fields.map(field => {
+        if (formData !== null) {
+            const fields = findSelect(formData.fields);
+            let selectField = []
+            for (const field of fields) {
                 if (field.type === 'dynamic') {
-                   return field.dynamicData.map(dynamicFields=>{
-                        let innerFields = findSelect(dynamicFields.fields);
-                        console.log({innerFields})
-                       return innerFields.map(f => fetchOption(f))
-                    }) 
+                    selectField = [...selectField, ...field.dynamicData.map(df => {
+                        return df.fields.filter(f => f.optionUrl && f.optionUrl !== "")
+                    })]
                 } else {
-                   return fetchOption(field)
+                    if (field.optionUrl && field.optionUrl !== "") {
+                        selectField.push(field)
+                    }
                 }
-            })
+            }
+            selectField = selectField.flat();
+            const promises = selectField.map(async field => {
+                return {
+                    [field.name]: await fetchOption(field)
+                }
+            });
+            Promise.all(promises).then(options => { 
+              setDynamicOptions(options)
+            });
         }
-    }, [formData,fetchOption, findSelect])
+    }, [formData, findSelect])
 
- 
+    console.log(dynamicOptions)
+
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
