@@ -8,6 +8,16 @@
             "placeholder": "Enter Provider Name"
         },
         {
+                    "name": "by_post",
+                    "label": "Post",
+                    "type": "select",
+                    "value": "",
+                    "optionUrl":"https://jsonplaceholder.typicode.com/posts",
+                    "placeholder": "Select Post",
+                    "options": []
+
+        },
+        {
             "name": "search_type",
             "type": "select",
             "label": "Search Type",

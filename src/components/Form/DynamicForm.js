@@ -53,7 +53,8 @@ const DynamicForm = () => {
             selectField = selectField.flat();
             const promises = selectField.map(async field => {
                 return {
-                    [field.name]: await fetchOption(field)
+                    name:field.name,
+                    data: await fetchOption(field)
                 }
             });
             Promise.all(promises).then(options => { 
@@ -69,6 +70,7 @@ const DynamicForm = () => {
         setSelectedOption(event.target.value);
     };
     const renderField = (field) => {
+
         switch (field.type) {
             case "text":
                 return (
@@ -95,6 +97,8 @@ const DynamicForm = () => {
                     </div>
                 );
             case "select":
+                const options = field.optionUrl !=="" ? dynamicOptions && dynamicOptions.find(option=>option.name === field.name)?.data : field.options;
+                console.log(options)
                 return (
                     <div className="form-group">
                         <label htmlFor={field.name}>{field.label}</label>
